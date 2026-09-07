@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="id" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agung Edi Santoso | Website Portofolio & CV</title>
+
+    <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5.3 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --accent-color: #3b82f6;
+            --navbar-blur: rgba(255, 255, 255, 0.85);
+            --card-hover-transform: translateY(-6px);
+        }
+
+        [data-bs-theme="dark"] {
+            --primary-color: #3b82f6;
+            --primary-hover: #60a5fa;
+            --accent-color: #93c5fd;
+            --navbar-blur: rgba(15, 23, 42, 0.85);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Glassmorphism Navbar */
+        .glass-navbar {
+            background-color: var(--navbar-blur);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Avatar Aura */
+        .avatar-glow {
+            position: relative;
+            display: inline-block;
+        }
+
+        .avatar-glow::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #2563eb, #06b6d4, #3b82f6);
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(15px);
+            opacity: 0.6;
+            animation: pulseGlow 4s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(0.95); opacity: 0.5; }
+            100% { transform: scale(1.05); opacity: 0.8; }
+        }
+
+        /* Experience Timeline */
+        .timeline-container {
+            border-left: 3px solid rgba(37, 99, 235, 0.2);
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 32px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -32px;
+            top: 4px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.25);
+        }
+
+        /* Project Card Hover */
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: var(--card-hover-transform);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12) !important;
+        }
+
+        .project-img-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-img-wrapper img {
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-img-wrapper img {
+            transform: scale(1.08);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        /* Hide elements on PDF print */
+        @media print {
+            .no-print, nav, footer, #contact-form, .btn-action {
+                display: none !important;
+            }
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            .card {
+                border: 1px solid #ddd !important;
+                box-shadow: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-body text-body" data-bs-spy="scroll" data-bs-target="#mainNavbar" data-bs-offset="100">
+
+    <!-- NAVBAR (HEADER) -->
+    <nav class="navbar navbar-expand-lg fixed-top glass-navbar border-bottom border-body-subtle py-3" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2 fw-bold text-primary fs-4" href="#home">
+                <i class="fa-solid fa-code"></i>
+                <span>Agung<span class="text-body-emphasis">.dev</span></span>
+            </a>
+
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <i class="fa-solid fa-bars fs-3"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 fw-semibold text-center gap-lg-3">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">Tentang</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Keahlian</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#experience">Pengalaman</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Portofolio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Kontak</a></li>
+                </ul>
+
+                <div class="d-flex align-items-center justify-content-center gap-2 no-print mt-3 mt-lg-0">
+                    <button class="btn btn-outline-secondary rounded-circle p-2 d-flex align-items-center justify-content-center" id="themeToggleBtn" style="width: 40px; height: 40px;" title="Ganti Tema">
+                        <i class="fa-solid fa-moon" id="themeIcon"></i>
+                    </button>
+                    <button class="btn btn-primary rounded-pill px-4 fw-semibold shadow-sm btn-action" onclick="window.print()">
+                        <i class="fa-solid fa-print me-2"></i>Cetak CV
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="min-vh-100 d-flex align-items-center pt-5 mt-4">
+        <div class="container py-5">
+            <div class="row align-items-center gy-5">
+                <div class="col-lg-7 text-center text-lg-start">
+                    <div class="d-inline-flex align-items-center gap-2 px-3 py-2 rounded-pill bg-primary bg-opacity-10 text-primary fw-semibold mb-3 small border border-primary border-opacity-25">
+                        <span class="spinner-grow spinner-grow-sm" role="status"></span>
+                        Siswa Rekayasa Perangkat Lunak
+                    </div>
+                    
+                    <h1 class="display-3 fw-extrabold text-body-emphasis mb-3 lh-sm">
+                        Halo, Saya <br><span class="text-primary">Agung Edi Santoso</span>
+                    </h1>
+                    
+                    <p class="lead text-body-secondary mb-4 pe-lg-5">
+                        Junior Web Developer & Siswa SMK PGRI Wlingi yang berdedikasi membangun aplikasi web modern, responsif, dan user-friendly menggunakan teknologi web terkini.
+                    </p>
+
+                    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start gap-3 no-print">
+                        <a href="#projects" class="btn btn-primary btn-lg rounded-pill px-4 shadow fw-semibold">
+                            <i class="fa-solid fa-rocket me-2"></i>Lihat Proyek
+                        </a>
+                        <a href="#contact" class="btn btn-outline-secondary btn-lg rounded-pill px-4 fw-semibold">
+                            <i class="fa-solid fa-paper-plane me-2"></i>Hubungi Saya
+                        </a>
+                    </div>
+
+                    <!-- Social Icons -->
+                    <div class="d-flex align-items-center justify-content-center justify-content-lg-start gap-3 mt-4 pt-2">
+                        <span class="small text-body-secondary fw-semibold">Ikuti Saya:</span>
+                        <a href="#" class="btn btn-sm btn-outline-secondary rounded-circle" style="width: 36px; height: 36px;"><i class="fa-brands fa-github"></i></a>
+                        <a href="#" class="btn btn-sm btn-outline-secondary rounded-circle" style="width: 36px; height: 36px;"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" class="btn btn-sm btn-outline-secondary rounded-circle" style="width: 36px; height: 36px;"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://wa.me/6281234567890" target="_blank" class="btn btn-sm btn-outline-success rounded-circle" style="width: 36px; height: 36px;"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-5 text-center">
+                    <div class="avatar-glow">
+                        <img src="agung.jpeg" alt="Agung Edi Santoso" class="img-fluid rounded-circle shadow-lg border border-4 border-primary" style="max-width: 320px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-5 bg-body-tertiary">
+        <div class="container py-4">
+            <div class="text-center max-w-700 mx-auto mb-5">
+                <span class="text-primary fw-bold text-uppercase tracking-wider small">Tentang Saya</span>
+                <h2 class="fw-bold fs-1 text-body-emphasis">Mengenal Lebih Dekat</h2>
+                <div class="mx-auto bg-primary rounded" style="width: 60px; height: 4px;"></div>
+            </div>
+
+            <div class="row gy-4 align-items-center">
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5">
+                        <h3 class="fw-bold mb-3">Ringkasan Profil</h3>
+                        <p class="text-body-secondary lh-lg mb-4">
+                            Saya adalah siswa jurusan <strong>Rekayasa Perangkat Lunak (RPL)</strong> di SMK PGRI Wlingi. Memiliki ketertarikan mendalam pada pengembangan frontend dan backend web. Terbiasa menulis kode yang bersih, terstruktur, serta responsif di berbagai perangkat.
+                        </p>
+                        
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <div class="p-3 bg-body rounded-3 border">
+                                    <small class="text-body-secondary d-block">Tempat & Tgl Lahir</small>
+                                    <strong class="text-body-emphasis">Blitar, 30 Sept 2008</strong>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-3 bg-body rounded-3 border">
+                                    <small class="text-body-secondary d-block">Lokasi</small>
+                                    <strong class="text-body-emphasis">Blitar, Jawa Timur</strong>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-3 bg-body rounded-3 border">
+                                    <small class="text-body-secondary d-block">Pendidikan</small>
+                                    <strong class="text-body-emphasis">SMK PGRI Wlingi</strong>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-3 bg-body rounded-3 border">
+                                    <small class="text-body-secondary d-block">Status</small>
+                                    <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-2 py-1">Pelajar / PKL</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Counters -->
+                <div class="col-lg-6">
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <div class="card border-0 shadow-sm rounded-4 p-4 text-center h-100">
+                                <div class="bg-primary bg-opacity-10 text-primary rounded-circle mx-auto p-3 mb-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                                    <i class="fa-solid fa-code-commit fs-3"></i>
+                                </div>
+                                <h3 class="fw-bold display-6 text-primary mb-1">99+</h3>
+                                <p class="text-body-secondary small mb-0 fw-semibold">Proyek Selesai</p>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="card border-0 shadow-sm rounded-4 p-4 text-center h-100">
+                                <div class="bg-primary bg-opacity-10 text-primary rounded-circle mx-auto p-3 mb-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                                    <i class="fa-solid fa-graduation-cap fs-3"></i>
+                                </div>
+                                <h3 class="fw-bold display-6 text-primary mb-1">3+</h3>
+                                <p class="text-body-secondary small mb-0 fw-semibold">Tahun Belajar Coding</p>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="card border-0 shadow-sm rounded-4 p-4 text-center h-100">
+                                <div class="bg-primary bg-opacity-10 text-primary rounded-circle mx-auto p-3 mb-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                                    <i class="fa-solid fa-certificate fs-3"></i>
+                                </div>
+                                <h3 class="fw-bold display-6 text-primary mb-1">5+</h3>
+                                <p class="text-body-secondary small mb-0 fw-semibold">Sertifikat & Penghargaan</p>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="card border-0 shadow-sm rounded-4 p-4 text-center h-100">
+                                <div class="bg-primary bg-opacity-10 text-primary rounded-circle mx-auto p-3 mb-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                                    <i class="fa-solid fa-laptop-code fs-3"></i>
+                                </div>
+                                <h3 class="fw-bold display-6 text-primary mb-1">100%</h3>
+                                <p class="text-body-secondary small mb-0 fw-semibold">Komitmen Belajar</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="py-5">
+        <div class="container py-4">
+            <div class="text-center max-w-700 mx-auto mb-5">
+                <span class="text-primary fw-bold text-uppercase tracking-wider small">Kemampuan</span>
+                <h2 class="fw-bold fs-1 text-body-emphasis">Skills & Teknologi</h2>
+                <div class="mx-auto bg-primary rounded" style="width: 60px; height: 4px;"></div>
+            </div>
+
+            <div class="row g-4">
+                <!-- HTML5 & CSS3 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 text-center h-100 project-card">
+                        <i class="fa-brands fa-html5 text-danger display-4 mb-3"></i>
+                        <h5 class="fw-bold">HTML5 & CSS3</h5>
+                        <p class="small text-body-secondary mb-3">Semantik HTML & Desain Web Responsif</p>
+                        <div class="progress" style="height: 8px;">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: 85%;"></div>
+                        </div>
+                        <span class="small fw-semibold mt-2 text-end d-block">85%</span>
+                    </div>
+                </div>
+
+                <!-- JavaScript -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 text-center h-100 project-card">
+                        <i class="fa-brands fa-square-js text-warning display-4 mb-3"></i>
+                        <h5 class="fw-bold">JavaScript</h5>
+                        <p class="small text-body-secondary mb-3">ES6+, Interaktivitas DOM & Fetch API</p>
+                        <div class="progress" style="height: 8px;">
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: 70%;"></div>
+                        </div>
+                        <span class="small fw-semibold mt-2 text-end d-block">70%</span>
+                    </div>
+                </div>
+
+                <!-- PHP & MySQL -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 text-center h-100 project-card">
+                        <i class="fa-brands fa-php text-primary display-4 mb-3"></i>
+                        <h5 class="fw-bold">PHP & MySQL</h5>
+                        <p class="small text-body-secondary mb-3">Backend CRUD & Database Relasional</p>
+                        <div class="progress" style="height: 8px;">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 75%;"></div>
+                        </div>
+                        <span class="small fw-semibold mt-2 text-end d-block">75%</span>
+                    </div>
+                </div>
+
+                <!-- Bootstrap 5 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 text-center h-100 project-card">
+                        <i class="fa-brands fa-bootstrap text-info display-4 mb-3"></i>
+                        <h5 class="fw-bold">Bootstrap 5</h5>
+                        <p class="small text-body-secondary mb-3">Grid System, Component & Layouting</p>
+                        <div class="progress" style="height: 8px;">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 80%;"></div>
+                        </div>
+                        <span class="small fw-semibold mt-2 text-end d-block">80%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE & EDUCATION SECTION -->
+    <section id="experience" class="py-5 bg-body-tertiary">
+        <div class="container py-4">
+            <div class="text-center max-w-700 mx-auto mb-5">
+                <span class="text-primary fw-bold text-uppercase tracking-wider small">Garis Waktu</span>
+                <h2 class="fw-bold fs-1 text-body-emphasis">Pendidikan & Pengalaman</h2>
+                <div class="mx-auto bg-primary rounded" style="width: 60px; height: 4px;"></div>
+            </div>
+
+            <div class="row gy-5">
+                <!-- Education -->
+                <div class="col-lg-6">
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        <div class="bg-primary text-white rounded-3 p-3">
+                            <i class="fa-solid fa-graduation-cap fs-4"></i>
+                        </div>
+                        <h3 class="fw-bold m-0">Riwayat Pendidikan</h3>
+                    </div>
+
+                    <div class="timeline-container ms-2">
+                        <div class="timeline-item">
+                            <div class="card border-0 shadow-sm rounded-4 p-4">
+                                <span class="badge bg-primary-subtle text-primary fw-semibold rounded-pill align-self-start mb-2 px-3 py-2">2024 - Sekarang</span>
+                                <h5 class="fw-bold text-body-emphasis mb-1">SMK PGRI Wlingi</h5>
+                                <p class="text-primary fw-semibold small mb-2">Jurusan Rekayasa Perangkat Lunak (RPL)</p>
+                                <p class="text-body-secondary small mb-0">
+                                    Fokus pembelajaran meliputi Algoritma Pemrograman, Pemrograman Web (HTML, CSS, JS, PHP), Basis Data MySQL, serta Pemrograman Berorientasi Objek.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience -->
+                <div class="col-lg-6">
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        <div class="bg-primary text-white rounded-3 p-3">
+                            <i class="fa-solid fa-briefcase fs-4"></i>
+                        </div>
+                        <h3 class="fw-bold m-0">Pengalaman Kerja / PKL</h3>
+                    </div>
+
+                    <div class="timeline-container ms-2">
+                        <div class="timeline-item">
+                            <div class="card border-0 shadow-sm rounded-4 p-4">
+                                <span class="badge bg-primary-subtle text-primary fw-semibold rounded-pill align-self-start mb-2 px-3 py-2">2025 - 2026</span>
+                                <h5 class="fw-bold text-body-emphasis mb-1">Praktik Kerja Lapangan (PKL)</h5>
+                                <p class="text-primary fw-semibold small mb-2">Software Development Intern</p>
+                                <ul class="text-body-secondary small ps-3 mb-0">
+                                    <li class="mb-1">Membantu merancang antarmuka web responsif berbasis HTML & Bootstrap.</li>
+                                    <li class="mb-1">Melakukan troubleshooting bug sistem dan pengujian fitur aplikasi.</li>
+                                    <li>Bekerja sama dengan tim developer dalam pengelolaan basis data.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="py-5">
+        <div class="container py-4">
+            <div class="text-center max-w-700 mx-auto mb-5">
+                <span class="text-primary fw-bold text-uppercase tracking-wider small">Karya Terbaik</span>
+                <h2 class="fw-bold fs-1 text-body-emphasis">Portofolio Proyek</h2>
+                <div class="mx-auto bg-primary rounded" style="width: 60px; height: 4px;"></div>
+            </div>
+
+            <!-- Project Cards Grid -->
+            <div class="row g-4">
+                <!-- Project 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card border-0 shadow-sm rounded-4 project-card h-100">
+                        <div class="project-img-wrapper">
+                            <img src="kikuk.jpg" class="card-img-top" alt="Sistem Inventaris" style="height: 220px; object-fit: cover;">
+                        </div>
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="d-flex gap-2 mb-2">
+                                <span class="badge bg-primary-subtle text-primary">PHP</span>
+                                <span class="badge bg-primary-subtle text-primary">MySQL</span>
+                            </div>
+                            <h5 class="fw-bold card-title text-body-emphasis">Sistem Inventaris Sekolah</h5>
+                            <p class="card-text text-body-secondary small flex-grow-1">
+                                Aplikasi web manajemen inventaris sarana dan prasarana sekolah berbasis PHP Native & MySQL dengan sistem login multi-user.
+                            </p>
+                            <a href="#" class="btn btn-outline-primary btn-sm rounded-pill mt-3 w-100 no-print">
+                                <i class="fa-solid fa-arrow-up-right-from-square me-1"></i> Lihat Detail
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card border-0 shadow-sm rounded-4 project-card h-100">
+                        <div class="project-img-wrapper">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBkPlErLlSK4TOdAggRedLhI3WGXeZXFWslkh5ZYaKDA&s=10" class="card-img-top" alt="Website Portofolio" style="height: 220px; object-fit: cover;">
+                        </div>
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="d-flex gap-2 mb-2">
+                                <span class="badge bg-primary-subtle text-primary">HTML5</span>
+                                <span class="badge bg-primary-subtle text-primary">Bootstrap 5</span>
+                            </div>
+                            <h5 class="fw-bold card-title text-body-emphasis">Website CV Interaktif</h5>
+                            <p class="card-text text-body-secondary small flex-grow-1">
+                                Website CV & Portofolio responsif dengan dukungan Dark Mode, cetak PDF otomatis, dan desain modern.
+                            </p>
+                            <a href="#" class="btn btn-outline-primary btn-sm rounded-pill mt-3 w-100 no-print">
+                                <i class="fa-solid fa-arrow-up-right-from-square me-1"></i> Lihat Detail
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card border-0 shadow-sm rounded-4 project-card h-100">
+                        <div class="project-img-wrapper">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm6xJx2eE3lzJVcR-ia_TsBM-XDrQqdk8L683Zq5n80w&s=10" class="card-img-top" alt="Aplikasi Kasir" style="height: 220px; object-fit: cover;">
+                        </div>
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="d-flex gap-2 mb-2">
+                                <span class="badge bg-primary-subtle text-primary">JavaScript</span>
+                                <span class="badge bg-primary-subtle text-primary">Bootstrap</span>
+                            </div>
+                            <h5 class="fw-bold card-title text-body-emphasis">Aplikasi Kasir Toko</h5>
+                            <p class="card-text text-body-secondary small flex-grow-1">
+                                Simulasi aplikasi Point of Sale (POS) sederhana berbasis JavaScript untuk menghitung total belanja dan cetak struk.
+                            </p>
+                            <a href="#" class="btn btn-outline-primary btn-sm rounded-pill mt-3 w-100 no-print">
+                                <i class="fa-solid fa-arrow-up-right-from-square me-1"></i> Lihat Detail
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CERTIFICATES SECTION -->
+    <section class="py-5 bg-body-tertiary">
+        <div class="container py-4">
+            <div class="text-center max-w-700 mx-auto mb-5">
+                <span class="text-primary fw-bold text-uppercase tracking-wider small">Sertifikasi</span>
+                <h2 class="fw-bold fs-1 text-body-emphasis">Sertifikat & Lisensi</h2>
+                <div class="mx-auto bg-primary rounded" style="width: 60px; height: 4px;"></div>
+            </div>
+
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-6 col-lg-5">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 d-flex flex-row align-items-center gap-3">
+                        <div class="bg-primary bg-opacity-10 text-primary p-3 rounded-3">
+                            <i class="fa-solid fa-award fs-2"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold text-body-emphasis mb-1">Sertifikat Ukk Kompetensi RPL</h6>
+                            <p class="small text-body-secondary mb-0">SMK PGRI Wlingi • 2026</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-5">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 d-flex flex-row align-items-center gap-3">
+                        <div class="bg-primary bg-opacity-10 text-primary p-3 rounded-3">
+                            <i class="fa-solid fa-certificate fs-2"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold text-body-emphasis mb-1">Web Development Fundamental</h6>
+                            <p class="small text-body-secondary mb-0">Dicoding / Online Course • 2026</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-5">
+        <div class="container py-4">
+            <div class="text-center max-w-700 mx-auto mb-5">
+                <span class="text-primary fw-bold text-uppercase tracking-wider small">Hubungi Saya</span>
+                <h2 class="fw-bold fs-1 text-body-emphasis">Mari Bekerja Sama</h2>
+                <div class="mx-auto bg-primary rounded" style="width: 60px; height: 4px;"></div>
+            </div>
+
+            <div class="row gy-4 justify-content-center">
+                <!-- Contact Info Cards -->
+                <div class="col-lg-4">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 h-100 d-flex flex-column justify-content-between">
+                        <div>
+                            <h4 class="fw-bold mb-4">Informasi Kontak</h4>
+                            
+                            <div class="d-flex align-items-center gap-3 mb-4">
+                                <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                    <i class="fa-solid fa-phone fs-5"></i>
+                                </div>
+                                <div>
+                                    <small class="text-body-secondary d-block">Telepon / WA</small>
+                                    <strong class="text-body-emphasis">08976838829</strong>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-center gap-3 mb-4">
+                                <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                    <i class="fa-solid fa-envelope fs-5"></i>
+                                </div>
+                                <div>
+                                    <small class="text-body-secondary d-block">Email</small>
+                                    <strong class="text-body-emphasis">kendukterpilih@gmail.com</strong>
+                                </div>
+                            </div>
+
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                    <i class="fa-solid fa-location-dot fs-5"></i>
+                                </div>
+                                <div>
+                                    <small class="text-body-secondary d-block">Alamat</small>
+                                    <strong class="text-body-emphasis">Blitar, Jawa Timur, Indonesia</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 pt-4 border-top">
+                            <span class="small text-body-secondary d-block mb-2">Respon Cepat via WhatsApp:</span>
+                            <a href="https://wa.me/628976838829" target="_blank" class="btn btn-success w-100 rounded-pill fw-semibold">
+                                <i class="fa-brands fa-whatsapp me-2"></i>Kirim Pesan WA
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="col-lg-7">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5">
+                        <h4 class="fw-bold mb-4">Kirim Pesan</h4>
+                        
+                        <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-semibold">Nama Lengkap</label>
+                                    <input type="text" class="form-control rounded-3 p-3" placeholder="Masukkan nama Anda" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-semibold">Email Anda</label>
+                                    <input type="email" class="form-control rounded-3 p-3" placeholder="nama@email.com" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small fw-semibold">Subjek</label>
+                                    <input type="text" class="form-control rounded-3 p-3" placeholder="Subjek pesan" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small fw-semibold">Pesan</label>
+                                    <textarea class="form-control rounded-3 p-3" rows="4" placeholder="Tuliskan pesan Anda di sini..." required></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5 fw-semibold w-100">
+                                        <i class="fa-solid fa-paper-plane me-2"></i>Kirim Pesan
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <!-- Notification Alert Container -->
+                        <div id="formAlert" class="mt-3 d-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER (BAGIAN PALING BAWAH) -->
+    <footer class="bg-dark text-white pt-5 pb-4 mt-5">
+        <div class="container">
+            <div class="row gy-4 border-bottom border-secondary border-opacity-25 pb-5">
+                <!-- Footer Brand -->
+                <div class="col-lg-4 text-center text-lg-start">
+                    <a class="navbar-brand d-inline-flex align-items-center gap-2 fw-bold text-primary fs-3 mb-3" href="#home">
+                        <i class="fa-solid fa-code"></i>
+                        <span class="text-white">Agung<span class="text-primary">.dev</span></span>
+                    </a>
+                    <p class="text-secondary small mb-3">
+                        Portofolio resmi Agung Edi Santoso. Siswa Rekayasa Perangkat Lunak SMK PGRI Wlingi yang berfokus pada pengembangan solusi web modern.
+                    </p>
+                </div>
+
+                <!-- Footer Quick Links -->
+                <div class="col-6 col-lg-2 offset-lg-2">
+                    <h6 class="text-white fw-bold mb-3">Navigasi</h6>
+                    <ul class="list-unstyled small d-flex flex-column gap-2 mb-0">
+                        <li><a href="#home" class="text-secondary text-decoration-none">Beranda</a></li>
+                        <li><a href="#about" class="text-secondary text-decoration-none">Tentang Saya</a></li>
+                        <li><a href="#skills" class="text-secondary text-decoration-none">Keahlian</a></li>
+                        <li><a href="#experience" class="text-secondary text-decoration-none">Pengalaman</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-6 col-lg-2">
+                    <h6 class="text-white fw-bold mb-3">Lainnya</h6>
+                    <ul class="list-unstyled small d-flex flex-column gap-2 mb-0">
+                        <li><a href="#projects" class="text-secondary text-decoration-none">Portofolio</a></li>
+                        <li><a href="#contact" class="text-secondary text-decoration-none">Kontak</a></li>
+                        <li><a href="#" onclick="window.print()" class="text-secondary text-decoration-none">Cetak PDF</a></li>
+                    </ul>
+                </div>
+
+                <!-- Footer Social Media -->
+                <div class="col-lg-2 text-center text-lg-start">
+                    <h6 class="text-white fw-bold mb-3">Sosial Media</h6>
+                    <div class="d-flex align-items-center justify-content-center justify-content-lg-start gap-2">
+                        <a href="#" class="btn btn-outline-light btn-sm rounded-circle" style="width: 36px; height: 36px;"><i class="fa-brands fa-github"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-sm rounded-circle" style="width: 36px; height: 36px;"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" class="btn btn-outline-light btn-sm rounded-circle" style="width: 36px; height: 36px;"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Copyright -->
+            <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center pt-4 small text-secondary">
+                <p class="mb-2 mb-sm-0">&copy; 2026 Agung Edi Santoso. All rights reserved.</p>
+                <p class="mb-0">Dibuat dengan <i class="fa-solid fa-heart text-danger"></i> & Bootstrap 5</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5.3 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Theme Switcher (Dark Mode / Light Mode)
+            const themeToggleBtn = document.getElementById('themeToggleBtn');
+            const themeIcon = document.getElementById('themeIcon');
+            const htmlTag = document.documentElement;
+
+            themeToggleBtn.addEventListener('click', () => {
+                const currentTheme = htmlTag.getAttribute('data-bs-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                htmlTag.setAttribute('data-bs-theme', newTheme);
+                
+                if (newTheme === 'dark') {
+                    themeIcon.className = 'fa-solid fa-sun text-warning';
+                } else {
+                    themeIcon.className = 'fa-solid fa-moon';
+                }
+            });
+
+            // Smooth Scroll active state handler for Navbar links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    const navbarCollapse = document.getElementById('navbarContent');
+                    if (navbarCollapse.classList.contains('show')) {
+                        const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                        bsCollapse.hide();
+                    }
+                });
+            });
+        });
+
+        // Contact Form Handler Simulation
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const alertBox = document.getElementById('formAlert');
+            
+            alertBox.className = 'alert alert-success rounded-3 mt-3 d-block';
+            alertBox.innerHTML = '<i class="fa-solid fa-circle-check me-2"></i>Terima kasih! Pesan Anda berhasil dikirim.';
+            
+            document.getElementById('contactForm').reset();
+
+            setTimeout(() => {
+                alertBox.className = 'mt-3 d-none';
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
